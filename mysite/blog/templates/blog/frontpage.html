@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<header class="masthead">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h3 class=" site-heading my-3 mt-1 text-black"> Welcome to My Blog ✍️ </h3>
+          <p class="text-dark">Django is Awesome🙂 </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="row">
+    <!-- Blog Entries Column -->
+    <div class="col-md-8 mt-3 left">
+        {% for post in posts %}
+      <div class="card mb-4">
+        <div class="card-body">
+          <h2 class="card-title">{{ post.title }}</h2>
+          <p class="card-text text-muted h6">{{ post.author }} | {{ post.date_added}} </p>
+          <p class="card-text">{{post.intro|slice:":200"}}</p>
+          <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% block sidebar %} 
+    {% include 'sidebar.html' %} 
+    {% endblock sidebar %}
+  </div>
+</div>
+{%endblock%}
+
+
+
